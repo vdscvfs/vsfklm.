@@ -40,8 +40,6 @@ struct ConversionPage7: View {
                 }
                 
                 VStack(spacing: 20) {
-                    ConversionProgressBar(currentStep: 7)
-                    
                     // Robot with heart eyes
                     VStack {
                         Image(systemName: "heart.fill")
@@ -187,6 +185,8 @@ struct ConversionPage7: View {
                         .padding(.bottom, 40)
                     }
                 }
+                
+                ConversionProgressBar(currentStep: 7)
             }
             .navigationBarHidden(true)
             .onAppear {

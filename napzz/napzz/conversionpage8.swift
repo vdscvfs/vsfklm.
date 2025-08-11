@@ -21,8 +21,6 @@ struct conversionpage8: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    ConversionProgressBar(currentStep: 8)
-                    
                     // Header with back button and robot
                     HStack {
                         Button(action: {
@@ -97,6 +95,8 @@ struct conversionpage8: View {
                     Spacer()
                     
                     Spacer()
+                    
+                    ConversionProgressBar(currentStep: 8)
                 }
                 
                 // Navigation link (invisible)

@@ -18,8 +18,6 @@ struct ConversionPage5: View {
         ZStack {
             Color.black.ignoresSafeArea()
             VStack(spacing: 0) {
-                ConversionProgressBar(currentStep: 5)
-                
                 VStack(spacing: 24) {
                 // Robot image (replace with your asset if you have one)
                 Image(systemName: "face.smiling")
@@ -54,6 +52,8 @@ struct ConversionPage5: View {
                 }
                 Spacer()
                 }
+                
+                ConversionProgressBar(currentStep: 5)
             }
         }
         .navigationBarHidden(true)

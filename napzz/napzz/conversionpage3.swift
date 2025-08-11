@@ -22,8 +22,6 @@ struct ConversionPage3: View {
         ZStack {
             Color.black.ignoresSafeArea()
             VStack(spacing: 0) {
-                ConversionProgressBar(currentStep: 3)
-                
                 VStack(spacing: 24) {
                 Image(systemName: "bed.double.fill")
                     .resizable()
@@ -56,6 +54,8 @@ struct ConversionPage3: View {
                 }
                 Spacer()
                 }
+                
+                ConversionProgressBar(currentStep: 3)
             }
         }
         .navigationDestination(isPresented: $showNextPage) {

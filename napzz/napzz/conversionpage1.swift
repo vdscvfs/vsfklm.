@@ -21,8 +21,6 @@ struct ConversionPage1: View {
             ZStack {
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 0) {
-                    ConversionProgressBar(currentStep: 1)
-                    
                     VStack(spacing: 24) {
                     // Robot image at the top (replace with your asset if needed)
                     Image(systemName: "face.smiling") // Replace with your robot image if you have one
@@ -58,6 +56,8 @@ struct ConversionPage1: View {
                     }
                     Spacer()
                     }
+                    
+                    ConversionProgressBar(currentStep: 1)
                 }
                 // Navigation to next page
                 .navigationDestination(isPresented: $goToNextPage) {

@@ -24,40 +24,17 @@ struct ConversionProgressBar: View {
                     .fill(Color.white.opacity(0.2))
                     .frame(height: 4)
                 
-                // Progress fill
+                // Progress fill - uniform light blue
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.blue,
-                                Color.purple.opacity(0.8)
-                            ]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .frame(width: UIScreen.main.bounds.width * 0.8 * progress, height: 4)
-                    .animation(.easeInOut(duration: 0.5), value: progress)
+                    .fill(Color(red: 0.4, green: 0.7, blue: 1.0)) // Light blue color
+                    .frame(width: UIScreen.main.bounds.width * 0.9 * progress, height: 4)
+                    .animation(.easeInOut(duration: 0.8), value: progress)
             }
-            .frame(width: UIScreen.main.bounds.width * 0.8)
-            
-            // Step indicator
-            HStack {
-                Text("\(currentStep) of \(totalSteps)")
-                    .font(.caption)
-                    .foregroundColor(.white.opacity(0.7))
-                Spacer()
-                Text("\(Int(progress * 100))%")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
-            }
-            .frame(width: UIScreen.main.bounds.width * 0.8)
-            .padding(.top, 8)
+            .frame(width: UIScreen.main.bounds.width * 0.9)
         }
         .padding(.horizontal, 20)
+        .padding(.bottom, 30)
         .padding(.top, 10)
-        .padding(.bottom, 20)
     }
 }
 
@@ -67,8 +44,8 @@ struct ConversionProgressBar: View {
             .ignoresSafeArea()
         
         VStack {
-            ConversionProgressBar(currentStep: 5)
             Spacer()
+            ConversionProgressBar(currentStep: 5)
         }
     }
 }

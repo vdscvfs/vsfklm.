@@ -15,8 +15,6 @@ struct ConversionPage2: View {
             ZStack {
                 Color.black.ignoresSafeArea()
                 VStack(spacing: 0) {
-                    ConversionProgressBar(currentStep: 2)
-                    
                     VStack(spacing: 24) {
                     Image(systemName: "moon.stars.fill")
                         .resizable()
@@ -49,6 +47,8 @@ struct ConversionPage2: View {
                     }
                     Spacer()
                     }
+                    
+                    ConversionProgressBar(currentStep: 2)
                 }
             }
             // Attach the navigationDestination modifier to the NavigationStack
