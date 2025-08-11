@@ -11,6 +11,7 @@ struct conversionpage12: View {
     @State private var selectedAnswer: String? = nil
     @State private var animateOptions = false
     @State private var navigateToNext = false
+    @State private var animateContent = false
     @Environment(\.presentationMode) var presentationMode
     
     let answers = [
@@ -113,11 +114,18 @@ struct conversionpage12: View {
             
             ConversionProgressBar(currentStep: 12)
         }
+        .opacity(animateContent ? 1.0 : 0.0)
+        .scaleEffect(animateContent ? 1.0 : 0.95)
+        .animation(.easeOut(duration: 0.8), value: animateContent)
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {
+                animateContent = true
                 animateOptions = true
             }
+        }
+        .onDisappear {
+            animateContent = false
         }
         .onChange(of: selectedAnswer) { answer in
             if answer != nil {

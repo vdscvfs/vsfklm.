@@ -39,6 +39,7 @@ struct conversionpage9: View {
     @State private var selectedHabit: SleepHabit? = nil
     @State private var animateOptions = false
     @State private var navigateToNext = false
+    @State private var animateContent = false
     
     var body: some View {
         ZStack {
@@ -124,6 +125,9 @@ struct conversionpage9: View {
                 
                 ConversionProgressBar(currentStep: 9)
             }
+            .opacity(animateContent ? 1.0 : 0.0)
+            .scaleEffect(animateContent ? 1.0 : 0.95)
+            .animation(.easeOut(duration: 0.8), value: animateContent)
             
             // Navigation link (invisible)
             NavigationLink(
@@ -136,8 +140,12 @@ struct conversionpage9: View {
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {
+                animateContent = true
                 animateOptions = true
             }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

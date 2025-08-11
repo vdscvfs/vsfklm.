@@ -10,6 +10,8 @@ import SwiftUI
 struct ConversionPage6: View {
     // Closure for navigation, if needed
     var onNext: (() -> Void)?
+    @State private var animateContent = false
+    @State private var navigateToNext = false
     
     let options: [(String, String)] = [
         ("😩", "Always"),
@@ -38,7 +40,9 @@ struct ConversionPage6: View {
                     .padding(.horizontal)
                 
                 ForEach(options, id: \.1) { emoji, label in
-                    NavigationLink(destination: ConversionPage7()) {
+                    Button(action: {
+                        navigateToNext = true
+                    }) {
                         HStack {
                             Text(emoji)
                                 .font(.title2)
@@ -56,10 +60,24 @@ struct ConversionPage6: View {
                 }
                 Spacer()
                 }
+                .opacity(animateContent ? 1.0 : 0.0)
+                .scaleEffect(animateContent ? 1.0 : 0.95)
+                .animation(.easeOut(duration: 0.8), value: animateContent)
                 
                 ConversionProgressBar(currentStep: 6)
             }
         }
         .navigationBarHidden(true)
+        .navigationDestination(isPresented: $navigateToNext) {
+            ConversionPage7()
+        }
+        .onAppear {
+            withAnimation {
+                animateContent = true
+            }
+        }
+        .onDisappear {
+            animateContent = false
+        }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ConversionPage3: View {
     @State private var showNextPage = false
+    @State private var animateContent = false
     
     let options = [
         "Less than 10 minutes",
@@ -54,12 +55,23 @@ struct ConversionPage3: View {
                 }
                 Spacer()
                 }
+                .opacity(animateContent ? 1.0 : 0.0)
+                .scaleEffect(animateContent ? 1.0 : 0.95)
+                .animation(.easeOut(duration: 0.8), value: animateContent)
                 
                 ConversionProgressBar(currentStep: 3)
             }
         }
         .navigationDestination(isPresented: $showNextPage) {
             ConversionPage4()
+        }
+        .onAppear {
+            withAnimation {
+                animateContent = true
+            }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

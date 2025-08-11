@@ -8,6 +8,7 @@ import SwiftUI
 
 struct ConversionPage1: View {
     @State private var goToNextPage = false
+    @State private var animateContent = false
 
     let options = [
         ("😄", "Very satisfied"),
@@ -56,6 +57,9 @@ struct ConversionPage1: View {
                     }
                     Spacer()
                     }
+                    .opacity(animateContent ? 1.0 : 0.0)
+                    .scaleEffect(animateContent ? 1.0 : 0.95)
+                    .animation(.easeOut(duration: 0.8), value: animateContent)
                     
                     ConversionProgressBar(currentStep: 1)
                 }
@@ -64,6 +68,14 @@ struct ConversionPage1: View {
                     ConversionPage2()
                 }
             }
+        }
+        .onAppear {
+            withAnimation {
+                animateContent = true
+            }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

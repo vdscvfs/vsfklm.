@@ -11,6 +11,7 @@ struct ConversionPage10: View {
     @State private var animateCards = false
     @State private var animateArrow = false
     @State private var navigateToNext = false
+    @State private var animateContent = false
     
     var body: some View {
         ZStack {
@@ -221,12 +222,19 @@ struct ConversionPage10: View {
             
             ConversionProgressBar(currentStep: 10)
         }
+        .opacity(animateContent ? 1.0 : 0.0)
+        .scaleEffect(animateContent ? 1.0 : 0.95)
+        .animation(.easeOut(duration: 0.8), value: animateContent)
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {
+                animateContent = true
                 animateCards = true
                 animateArrow = true
             }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

@@ -11,7 +11,9 @@ struct ConversionProgressBar: View {
     let currentStep: Int
     let totalSteps: Int = 17
     
-    private var progress: Double {
+    @State private var displayedProgress: Double = 0
+    
+    private var targetProgress: Double {
         return Double(currentStep) / Double(totalSteps)
     }
     
@@ -24,17 +26,28 @@ struct ConversionProgressBar: View {
                     .fill(Color.white.opacity(0.2))
                     .frame(height: 4)
                 
-                // Progress fill - uniform light blue
+                // Progress fill - uniform light blue with smooth animation
                 RoundedRectangle(cornerRadius: 4)
                     .fill(Color(red: 0.4, green: 0.7, blue: 1.0)) // Light blue color
-                    .frame(width: UIScreen.main.bounds.width * 0.9 * progress, height: 4)
-                    .animation(.easeInOut(duration: 0.8), value: progress)
+                    .frame(width: UIScreen.main.bounds.width * 0.9 * displayedProgress, height: 4)
             }
             .frame(width: UIScreen.main.bounds.width * 0.9)
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 30)
         .padding(.top, 10)
+        .onAppear {
+            // Animate to target progress when view appears
+            withAnimation(.easeInOut(duration: 1.2)) {
+                displayedProgress = targetProgress
+            }
+        }
+        .onChange(of: currentStep) { _ in
+            // Smoothly animate to new progress when step changes
+            withAnimation(.easeInOut(duration: 1.2)) {
+                displayedProgress = targetProgress
+            }
+        }
     }
 }
 

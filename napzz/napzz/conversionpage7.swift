@@ -11,6 +11,7 @@ struct ConversionPage7: View {
     @State private var animateChart = false
     @State private var animateStars = false
     @State private var navigateToSleepPosition = false
+    @State private var animateContent = false
     
     var body: some View {
         NavigationView {
@@ -185,15 +186,22 @@ struct ConversionPage7: View {
                         .padding(.bottom, 40)
                     }
                 }
+                .opacity(animateContent ? 1.0 : 0.0)
+                .scaleEffect(animateContent ? 1.0 : 0.95)
+                .animation(.easeOut(duration: 0.8), value: animateContent)
                 
                 ConversionProgressBar(currentStep: 7)
             }
             .navigationBarHidden(true)
             .onAppear {
+                animateContent = true
                 animateStars = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     animateChart = true
                 }
+            }
+            .onDisappear {
+                animateContent = false
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

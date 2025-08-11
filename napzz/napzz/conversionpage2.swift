@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ConversionPage2: View {
     @State private var showNextPage = false
+    @State private var animateContent = false
 
     var body: some View {
         NavigationStack {
@@ -47,6 +48,9 @@ struct ConversionPage2: View {
                     }
                     Spacer()
                     }
+                    .opacity(animateContent ? 1.0 : 0.0)
+                    .scaleEffect(animateContent ? 1.0 : 0.95)
+                    .animation(.easeOut(duration: 0.8), value: animateContent)
                     
                     ConversionProgressBar(currentStep: 2)
                 }
@@ -55,6 +59,14 @@ struct ConversionPage2: View {
             .navigationDestination(isPresented: $showNextPage) {
                 ConversionPage3()
             }
+        }
+        .onAppear {
+            withAnimation {
+                animateContent = true
+            }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

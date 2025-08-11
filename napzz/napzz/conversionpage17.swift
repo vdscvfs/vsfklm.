@@ -207,17 +207,23 @@ struct ConversionPage17: View {
             
             // Navigation link (invisible)
             NavigationLink(
-                destination: ConversionPage17(), // Updated to point to ConversionPage17
+                destination: ContentView(), // Navigate to main app after conversion
                 isActive: $navigateToNext,
                 label: { EmptyView() }
             )
             .hidden()
         }
+        .opacity(animateContent ? 1.0 : 0.0)
+        .scaleEffect(animateContent ? 1.0 : 0.95)
+        .animation(.easeOut(duration: 0.8), value: animateContent)
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {
                 animateContent = true
             }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

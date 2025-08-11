@@ -5,6 +5,7 @@ struct ConversionPage15: View {
     @State private var animateCards = false
     @State private var selectedSound: Int? = nil
     @State private var navigateToNext = false
+    @State private var animateContent = false
     @Environment(\.presentationMode) var presentationMode
     
     let soundCategories = ["All", "New", "Rain", "ASMR", "Nature", "AI"]
@@ -193,8 +194,12 @@ struct ConversionPage15: View {
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {
+                animateContent = true
                 animateCards = true
             }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

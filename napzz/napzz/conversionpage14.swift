@@ -11,6 +11,7 @@ struct ConversionPage14: View {
     @State private var animateCards = false
     @State private var selectedCard: Int? = nil
     @State private var navigateToNext = false
+    @State private var animateContent = false
     @Environment(\.presentationMode) var presentationMode
     
     let sleepEvents = [
@@ -153,8 +154,12 @@ struct ConversionPage14: View {
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {
+                animateContent = true
                 animateCards = true
             }
+        }
+        .onDisappear {
+            animateContent = false
         }
     }
 }

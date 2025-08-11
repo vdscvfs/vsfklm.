@@ -10,6 +10,7 @@ struct conversionpage13: View {
     @State private var progress: Double = 0
     @State private var animateUsers = false
     @State private var navigateToNext = false
+    @State private var animateContent = false
     @Environment(\.presentationMode) var presentationMode
     
     // Timer for progress animation
@@ -134,11 +135,16 @@ struct conversionpage13: View {
             
             ConversionProgressBar(currentStep: 13)
         }
+        .opacity(animateContent ? 1.0 : 0.0)
+        .scaleEffect(animateContent ? 1.0 : 0.95)
+        .animation(.easeOut(duration: 0.8), value: animateContent)
         .navigationBarHidden(true)
         .onAppear {
+            animateContent = true
             startAnimations()
         }
         .onDisappear {
+            animateContent = false
             timer?.invalidate()
         }
     }
