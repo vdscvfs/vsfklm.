@@ -26,8 +26,6 @@ struct conversionpage13: View {
             .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                ConversionProgressBar(currentStep: 13)
-                
                 Spacer()
                 
                 // Robot icon
@@ -133,6 +131,8 @@ struct conversionpage13: View {
                 )
                 .hidden()
             }
+            
+            ConversionProgressBar(currentStep: 13)
         }
         .navigationBarHidden(true)
         .onAppear {

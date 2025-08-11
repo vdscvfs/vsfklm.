@@ -63,8 +63,6 @@ struct ConversionPage14: View {
             .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                ConversionProgressBar(currentStep: 14)
-                
                 // Header
                 VStack(spacing: 8) {
                     Text("Accurate Sleep Recorder")
@@ -150,6 +148,8 @@ struct ConversionPage14: View {
             )
             .hidden()
         }
+        
+        ConversionProgressBar(currentStep: 14)
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {

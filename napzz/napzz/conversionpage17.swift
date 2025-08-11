@@ -37,8 +37,6 @@ struct ConversionPage17: View {
             
             ScrollView {
                 VStack(spacing: 0) {
-                    ConversionProgressBar(currentStep: 17)
-                    
                     // Header section
                     VStack(spacing: 20) {
                         // Close and Restore buttons
@@ -202,6 +200,8 @@ struct ConversionPage17: View {
                     .padding(.bottom, 30)
                     .opacity(animateContent ? 1.0 : 0.0)
                     .animation(.easeInOut(duration: 0.8).delay(1.2), value: animateContent)
+                    
+                    ConversionProgressBar(currentStep: 17)
                 }
             }
             

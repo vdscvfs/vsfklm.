@@ -27,8 +27,6 @@ struct conversionpage11: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                ConversionProgressBar(currentStep: 11)
-                
                 // Header with back button
                 HStack {
                     Button(action: {
@@ -112,6 +110,8 @@ struct conversionpage11: View {
                 )
                 .hidden()
             }
+            
+            ConversionProgressBar(currentStep: 11)
         }
         .navigationBarHidden(true)
         .onAppear {

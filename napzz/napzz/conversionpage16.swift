@@ -111,8 +111,6 @@ struct ConversionPage16: View {
             }
             
             VStack(spacing: 0) {
-                ConversionProgressBar(currentStep: 16)
-                
                 // Header
                 VStack(spacing: 8) {
                     Text("Millions of Users' Choice")
@@ -257,6 +255,8 @@ struct ConversionPage16: View {
             )
             .hidden()
         }
+        
+        ConversionProgressBar(currentStep: 16)
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {

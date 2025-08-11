@@ -40,8 +40,6 @@ struct ConversionPage15: View {
             .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                ConversionProgressBar(currentStep: 15)
-                
                 // Header
                 VStack(spacing: 8) {
                     Text("Best Sound Machine")
@@ -190,6 +188,8 @@ struct ConversionPage15: View {
             )
             .hidden()
         }
+        
+        ConversionProgressBar(currentStep: 15)
         .navigationBarHidden(true)
         .onAppear {
             withAnimation {
