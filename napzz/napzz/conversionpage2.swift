@@ -1,0 +1,61 @@
+//
+//  conversionpage2.swift
+//  napzz
+//
+//  Created by Morris Romagnoli on 04/07/2025.
+//
+
+import SwiftUI
+
+struct ConversionPage2: View {
+    @State private var showNextPage = false
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.black.ignoresSafeArea()
+                VStack(spacing: 0) {
+                    ConversionProgressBar(currentStep: 2)
+                    
+                    VStack(spacing: 24) {
+                    Image(systemName: "moon.stars.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(.white)
+                        .padding(.top, 40)
+
+                    Text("What time do you usually go to bed?")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+
+                    ForEach(["Before 10 PM", "10-11 PM", "11 PM - Midnight", "After Midnight"], id: \.self) { option in
+                        Button(action: {
+                            showNextPage = true
+                        }) {
+                            HStack {
+                                Text(option)
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                Spacer()
+                            }
+                            .padding()
+                            .background(Color(red: 32/255, green: 33/255, blue: 36/255))
+                            .cornerRadius(18)
+                        }
+                        .padding(.horizontal)
+                    }
+                    Spacer()
+                    }
+                }
+            }
+            // Attach the navigationDestination modifier to the NavigationStack
+            .navigationDestination(isPresented: $showNextPage) {
+                ConversionPage3()
+            }
+        }
+    }
+}
+
